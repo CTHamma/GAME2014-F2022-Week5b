@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &650835021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 650835022}
+  m_Layer: 0
+  m_Name: BulletSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &650835022
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650835021}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3372169470572015735}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3372169470572015736
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,8 +41,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3372169470572015735}
   - component: {fileID: 3372169470572015734}
-  - component: {fileID: 3372169470572015737}
   - component: {fileID: 4320089170772848175}
+  - component: {fileID: 3372169470572015737}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -30,9 +61,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 650835022}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3372169470572015734
 SpriteRenderer:
@@ -72,8 +104,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2027476659
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0034139f2f716fc4ca2d03d612505aa7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -86,23 +118,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3372169470572015737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3372169470572015736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d583c393111eba46bd0e29b0856e30c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  boundary:
-    min: -1.9
-    max: 1.9
-  veritcalPos: -4
 --- !u!60 &4320089170772848175
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -120,7 +135,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.46, y: 0.28}
+    oldSize: {x: 0.92, y: 0.56}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -129,8 +144,9 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.031030603, y: 0.14}
-      - {x: -0.14999999, y: 0.049999997}
-      - {x: -0.22999999, y: -0.02}
+      - {x: -0.06785095, y: 0.1116118}
+      - {x: -0.08760829, y: 0.07994802}
+      - {x: -0.23701526, y: -0.032336794}
       - {x: -0.23672704, y: -0.06542473}
       - {x: -0.2220269, y: -0.073850706}
       - {x: -0.13928676, y: -0.033085354}
@@ -145,3 +161,27 @@ PolygonCollider2D:
       - {x: 0.23569643, y: -0.041483458}
       - {x: 0.022061206, y: 0.14112118}
   m_UseDelaunayMesh: 0
+--- !u!114 &3372169470572015737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3372169470572015736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d583c393111eba46bd0e29b0856e30c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  boundary:
+    min: -1.9
+    max: 1.9
+  veritcalPos: -4
+  veritcalSpeed: 10
+  usingMobileInput: 1
+  scoreManager: {fileID: 0}
+  bulletSpawnPoint: {fileID: 650835022}
+  bulletPrefab: {fileID: 0}
+  fireRate: 0.2
+  bulletParent: {fileID: 0}

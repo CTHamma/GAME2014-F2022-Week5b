@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    [Header("Player Properties")]
     public float moveSpeed = 10.0f;
     public Boundary boundary;
     public float veritcalPos;
@@ -12,16 +13,25 @@ public class PlayerBehaviour : MonoBehaviour
     public bool usingMobileInput = false;
     public ScoreManager scoreManager;
 
+    [Header("Bullet Properties")]
+    public Transform bulletSpawnPoint;
+    public float fireRate = 0.2f;
+    public BulletManager bulletManager;
+
     private Camera camera;
 
     private void Start()
     {
+        bulletManager = FindObjectOfType<BulletManager>();
+
         camera = Camera.main;
 
         usingMobileInput = Application.platform == RuntimePlatform.Android ||
                             Application.platform == RuntimePlatform.IPhonePlayer;
 
         scoreManager = FindObjectOfType<ScoreManager>();
+
+        InvokeRepeating("FireBullets", 0.0f, fireRate);
     }
 
     // Update is called once per frame
@@ -62,6 +72,15 @@ public class PlayerBehaviour : MonoBehaviour
     {
         float x = Input.GetAxisRaw("Horizontal") * Time.deltaTime * moveSpeed;
         transform.position += new Vector3(x, 0, 0);
+
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    FireBullets();
+        //}
     }
 
+    void FireBullets()
+    {
+        var bullets = bulletManager.GetBullet(bulletSpawnPoint.position, BulletDirection.UP);
+    }
 }

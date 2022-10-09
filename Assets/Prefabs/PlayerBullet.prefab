@@ -97,13 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9db940fd21a5584e9583acc3b3cfaf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
+  bulletDirection: 0
   speed: 6
-  velocity: {x: 0, y: 0, z: 0}
   bounds:
     horizontal:
-      min: 0
-      max: 0
+      min: -3
+      max: 3
     vertical:
-      min: 0
-      max: 0
+      min: -6
+      max: 6
+  bulletManager: {fileID: 0}

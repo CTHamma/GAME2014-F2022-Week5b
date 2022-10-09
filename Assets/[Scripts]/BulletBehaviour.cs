@@ -11,29 +11,19 @@ public struct ScreenBounds
 
 public class BulletBehaviour : MonoBehaviour
 {
-    public BulletDirection direction;
+    [Header("Bullet Properties")]
+    public BulletDirection bulletDirection;
     public float speed;
-    public Vector3 velocity;
     public ScreenBounds bounds;
+    public BulletManager bulletManager;
+
+    private Vector3 velocity;
 
     // Start is called before the first frame update
     void Start()
     {
-        switch(direction)
-        {
-            case BulletDirection.UP:
-                velocity = Vector3.up * speed;
-                break;
-            case BulletDirection.RIGHT:
-                velocity = Vector3. right * speed;
-                break;
-            case BulletDirection.DOWN:
-                velocity = Vector3.down * speed;
-                break;
-            case BulletDirection.LEFT:
-                velocity = Vector3.left * speed;
-                break;
-        }
+        SetDirection(bulletDirection);
+        bulletManager = FindObjectOfType<BulletManager>();
     }
 
     // Update is called once per frame
@@ -50,17 +40,36 @@ public class BulletBehaviour : MonoBehaviour
 
     void CheckBounds()
     {
-        if((transform.position.x > bounds.horizontal.max) ||
-          (transform.position.x < bounds.horizontal.min)  ||
-          (transform.position.y > bounds.vertical.max)    ||
-          (transform.position.y < bounds.vertical.max))
+        if ((transform.position.x > bounds.horizontal.max) ||
+            (transform.position.x < bounds.horizontal.min) ||
+            (transform.position.y > bounds.vertical.max) ||
+            (transform.position.y < bounds.vertical.min))
         {
-            Destroy(this.gameObject);
+            bulletManager.ReturnBullet(this.gameObject);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy (this.gameObject);
+        bulletManager.ReturnBullet(this.gameObject);
+    }
+
+    public void SetDirection(BulletDirection direction)
+    {
+        switch (direction)
+        {
+            case BulletDirection.UP:
+                velocity = Vector3.up * speed;
+                break;
+            case BulletDirection.RIGHT:
+                velocity = Vector3.right * speed;
+                break;
+            case BulletDirection.DOWN:
+                velocity = Vector3.down * speed;
+                break;
+            case BulletDirection.LEFT:
+                velocity = Vector3.left * speed;
+                break;
+        }
     }
 }
